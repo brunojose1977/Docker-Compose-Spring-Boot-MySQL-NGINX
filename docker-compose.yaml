@@ -1,8 +1,14 @@
 version: '3'
 services:
   nginx:
+   labels:
+     tipo_aplicacao: "Treinando conhecimento em Docker Compose"
+     desenvolvedor: "Bruno Silva"
    container_name: some-nginx
    image: nginx:1.13
+   environment:
+     DEV_USER_NAME: Bruno
+     DEV_USE_COMPANY: RNP-USDE-GASC
    restart: always
    ports:
    - 80:80
@@ -11,7 +17,7 @@ services:
    - ./nginx/conf.d:/etc/nginx/conf.d
    depends_on:
    - app
- 
+
   mysql:
    container_name: some-mysql
    image: mysql/mysql-server:5.7
@@ -22,7 +28,7 @@ services:
    ports:
    - "3306:3306"
    restart: always
-  
+
   app:
     restart: always
     build: ./app
